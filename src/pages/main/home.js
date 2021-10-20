@@ -3,8 +3,14 @@ import styled from "styled-components";
 import {StyledHeader} from "../../components/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
 import Records from "../../components/Records";
+import { Link } from "react-router-dom";
+import NewRecordContext from "../../store/NewRecordContext";
+import { useContext } from "react";
 
 export default function Home () {
+
+    const { setNewRecord } = useContext(NewRecordContext);
+
     return (
         <StyledPageContainer>
             <StyledHeaderBox>
@@ -14,12 +20,16 @@ export default function Home () {
             <Records />
             <StyledButtonsBox>
                 <StyledNewRecordButton>
-                    <StyledAddIcon />
-                    <p>Nova entrada</p>
+                    <Link className="buttonLink" to="/new-record" onClick={() => setNewRecord(true)}>
+                        <StyledAddIcon />
+                        <p>Nova entrada</p>
+                    </Link>
                 </StyledNewRecordButton>
                 <StyledNewRecordButton>
-                    <StyledRemoveIcon />
-                    <p>Nova saída</p>
+                    <Link className="buttonLink" to="/new-record" onClick={() => setNewRecord(false)}>
+                        <StyledRemoveIcon />
+                        <p>Nova saída</p>
+                    </Link>
                 </StyledNewRecordButton>
             </StyledButtonsBox>
         </StyledPageContainer>
@@ -47,12 +57,17 @@ const StyledNewRecordButton = styled.button`
     background-color: #A966D6;
     width: 100%;
     height: 114px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     border: none;
     border-radius: 5px;
     padding: 10px;
+
+    .buttonLink {
+        height: 100%;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
     p {
         width: 64px;

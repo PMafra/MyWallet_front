@@ -1,6 +1,7 @@
 import StyledPageContainer from "../../components/StyledPageContainer";
-import { StyledSignPage, StyledLogo, StyledForm, StyledInput, StyledButton, StyledLogSwap } from "../../components/StyledSignPage";
-
+import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/StyledSignPage";
+import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
+import { Link } from "react-router-dom";
 export default function SignUp () {
     return (
         <StyledPageContainer>
@@ -16,7 +17,9 @@ export default function SignUp () {
                     <StyledButton>Cadastrar</StyledButton>
                 </StyledForm>
                 <StyledLogSwap>
-                    Já tem uma conta? Entre agora!
+                    <Link to="/" className="swapLink">
+                        Já tem uma conta? Entre agora!
+                    </Link>
                 </StyledLogSwap>
             </StyledSignPage>
         </StyledPageContainer>

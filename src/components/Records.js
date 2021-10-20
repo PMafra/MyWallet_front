@@ -23,7 +23,7 @@ const StyledRecordsContainer = styled.div`
     margin-bottom: 13px;
     width: 100%;
     max-width: 326px;
-    height: 446px;
+    height: 100vh;
     background-color: #ffffff;
     border-radius: 5px;
     padding: 23px 12px 10px 15px;
