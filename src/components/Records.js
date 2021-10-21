@@ -33,7 +33,13 @@ export default function Records () {
                                 <time className="fontClass">{date}</time>
                                 <p className="fontClass">{description}</p>
                             </div>
-                            <span className="fontClass">{value}</span>
+                            <span className="fontClass">
+                                {value % 1 === 0 ? (
+                                    `${value}.00`
+                                ) : (
+                                    value.toFixed(2)
+                                )}
+                            </span>
                         </StyledRecord>   
                     )
                 ) : (
@@ -46,7 +52,13 @@ export default function Records () {
             </StyledRecordsList>
             <StyledBalanceBox totalBalance={totalBalance}>
                 <h3>SALDO</h3>
-                <span>{totalBalance}</span>
+                <span>
+                    {totalBalance % 1 === 0 ? (
+                        `${totalBalance}.00`
+                    ) : (
+                        totalBalance.toFixed(2)
+                    )}
+                </span>
             </StyledBalanceBox>
         </StyledRecordsContainer>
     )

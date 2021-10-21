@@ -46,7 +46,7 @@ export default function NewRecord () {
             <StyledForm onSubmit={e => {
                     addNewRecord(e);
                 }}>
-                <StyledInput placeholder="Valor" type="text" value={value} onChange={e => setValue(e.target.value)} required></StyledInput>
+                <StyledInput placeholder="Valor" type="number" step="any" value={value} onChange={e => setValue(e.target.value)} required></StyledInput>
                 <StyledInput placeholder="Descrição" type="text" value={description} onChange={e => setDescription(e.target.value)} required></StyledInput>
                 <StyledButton type="submit">
                     {isAddRecord ? (
