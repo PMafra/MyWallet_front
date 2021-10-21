@@ -3,6 +3,7 @@ import { BrowserRouter as Router} from "react-router-dom";
 import AppRoutes from "./AppRoutes";
 import GlobalStyle from "./components/GlobalStyle";
 import RecordsContext from "./store/RecordsContext";
+import TransitionStyle from "./components/TransitionStyle";
 
 export default function App () {
 
@@ -13,6 +14,7 @@ export default function App () {
     <RecordsContext.Provider value={{isAddRecord, setIsAddRecord, records, setRecords}}>
       <Router>
         <GlobalStyle />
+        <TransitionStyle />
         <AppRoutes />
       </Router>
     </RecordsContext.Provider>

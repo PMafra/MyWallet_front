@@ -55,11 +55,10 @@ export default function NewRecord () {
                         "Salvar saída"
                     )}
                 </StyledButton>
-                <StyledButton onClick={() => history.push("/home")}>
-                    Cancelar
-                </StyledButton>
             </StyledForm>
-            
+            <StyledButton onClick={() => history.push("/home")}>
+                Cancelar
+            </StyledButton>
         </StyledPageContainer>
     )
 }

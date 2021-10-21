@@ -11,19 +11,23 @@ export default function AppRoutes () {
     const location = useLocation();
 
     return (
-        <Switch location={location}>
-            <Route exact path="/">
-                <SignIn />
-            </Route>
-            <Route exact path="/sign-up">
-                <SignUp />
-            </Route>
-            <Route exact path="/home">
-                <Home />
-            </Route>
-            <Route exact path="/new-record">
-                <NewRecord />
-            </Route>
-        </Switch>
+        <TransitionGroup>
+            <CSSTransition timeout={300} classNames="fade-drop" key={location.key}>
+                <Switch location={location}>
+                    <Route exact path="/">
+                        <SignIn />
+                    </Route>
+                    <Route exact path="/sign-up">
+                        <SignUp />
+                    </Route>
+                    <Route exact path="/home">
+                        <Home />
+                    </Route>
+                    <Route exact path="/new-record">
+                        <NewRecord />
+                    </Route>
+                </Switch>
+            </CSSTransition>
+        </TransitionGroup>
     )
 }
