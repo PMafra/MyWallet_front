@@ -4,12 +4,12 @@ import {StyledHeader} from "../../components/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
 import Records from "../../components/Records";
 import { Link } from "react-router-dom";
-import NewRecordContext from "../../store/NewRecordContext";
+import RecordsContext from "../../store/RecordsContext";
 import { useContext } from "react";
 
 export default function Home () {
 
-    const { setNewRecord } = useContext(NewRecordContext);
+    const { setIsAddRecord } = useContext(RecordsContext);
 
     return (
         <StyledPageContainer>
@@ -20,13 +20,13 @@ export default function Home () {
             <Records />
             <StyledButtonsBox>
                 <StyledNewRecordButton>
-                    <Link className="buttonLink" to="/new-record" onClick={() => setNewRecord(true)}>
+                    <Link className="buttonLink" to="/new-record" onClick={() => setIsAddRecord(true)}>
                         <StyledAddIcon />
                         <p>Nova entrada</p>
                     </Link>
                 </StyledNewRecordButton>
                 <StyledNewRecordButton>
-                    <Link className="buttonLink" to="/new-record" onClick={() => setNewRecord(false)}>
+                    <Link className="buttonLink" to="/new-record" onClick={() => setIsAddRecord(false)}>
                         <StyledRemoveIcon />
                         <p>Nova saída</p>
                     </Link>

@@ -2,44 +2,41 @@ import styled from "styled-components";
 import { StyledHeader } from "../../components/StyledHeader";
 import StyledPageContainer from "../../components/StyledPageContainer";
 import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
-import NewRecordContext from "../../store/NewRecordContext";
+import RecordsContext from "../../store/RecordsContext";
 import { useContext, useState } from "react";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 
 export default function NewRecord () {
 
-    const { newRecord, setRecords, records } = useContext(NewRecordContext);
+    const { isAddRecord, setRecords, records } = useContext(RecordsContext);
     const history = useHistory();
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
 
-    console.log(records)
-
     const addNewRecord = (event) => {
         event.preventDefault();
 
-        const myNewRecord = {
+        const newRecord = {
             date: dayjs().format("DD/MM"),
             description,
-            value
+            value: Number(value),
+            isAddRecord
         }
 
         setRecords([
             ...records,
-            myNewRecord
+            newRecord
         ])
 
-
         history.push("/home");
-
     }
 
     return (
         <StyledPageContainer>
             <StyledHeaderBox>
                 <StyledHeader>
-                    {newRecord ? (
+                    {isAddRecord ? (
                         "Nova entrada"
                     ) : (
                         "Nova saída"
@@ -52,7 +49,7 @@ export default function NewRecord () {
                 <StyledInput placeholder="Valor" type="text" value={value} onChange={e => setValue(e.target.value)} required></StyledInput>
                 <StyledInput placeholder="Descrição" type="text" value={description} onChange={e => setDescription(e.target.value)} required></StyledInput>
                 <StyledButton type="submit">
-                    {newRecord ? (
+                    {isAddRecord ? (
                         "Salvar entrada"
                     ) : (
                         "Salvar saída"

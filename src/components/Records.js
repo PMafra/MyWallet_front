@@ -1,29 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import { useState, useContext } from "react";
-import NewRecordContext from "../store/NewRecordContext";
+import { useState, useContext, useEffect } from "react";
+import RecordsContext from "../store/RecordsContext";
 
 export default function Records () {
 
-    const [totalBalance, setTotalBalance] = useState("0,00"); 
+    const [totalBalance, setTotalBalance] = useState(0); 
 
-    const { records } = useContext(NewRecordContext);
+    const { records } = useContext(RecordsContext);
+
+    useEffect(() => {
+
+        let sumOfRecordsValues = 0;
+        records.forEach(record => {
+            if (record.isAddRecord) {
+                sumOfRecordsValues += record.value;
+            } else {
+                sumOfRecordsValues -= record.value;
+            }
+        })
+        setTotalBalance(sumOfRecordsValues);
+
+    }, [])
 
     return (
         <StyledRecordsContainer>
             <StyledRecordsList>
-
                 {records.length !== 0 ? (
-                    records.map(record => 
-                        
-                    <StyledRecord>
-                        <div className="group-date-description">
-                            <time className="fontClass">{record.date}</time>
-                            <p className="fontClass">{record.description}</p>
-                        </div>
-                        <span className="fontClass">{record.value}</span>
-                    </StyledRecord>   
-                        
+                    records.map((record, i) => 
+                        <StyledRecord key={i} isAddRecord={record.isAddRecord}>
+                            <div className="group-date-description">
+                                <time className="fontClass">{record.date}</time>
+                                <p className="fontClass">{record.description}</p>
+                            </div>
+                            <span className="fontClass">{record.value}</span>
+                        </StyledRecord>   
                     )
                 ) : (
                     <StyledNoRecords>
@@ -32,11 +43,8 @@ export default function Records () {
                         </p>
                     </StyledNoRecords>
                 )}
-
-
             </StyledRecordsList>
-
-            <StyledBalanceBox>
+            <StyledBalanceBox totalBalance={totalBalance}>
                 <h3>SALDO</h3>
                 <span>{totalBalance}</span>
             </StyledBalanceBox>
@@ -113,7 +121,7 @@ const StyledRecord = styled.li`
     }
 
     span {
-        color: #69CB60;
+        color: ${({ isAddRecord }) => isAddRecord ? "#69CB60": "#C70000"};
         display: flex;
         justify-content: center;
         align-items: center;
@@ -142,6 +150,6 @@ const StyledBalanceBox = styled.div`
         font-weight: 400;
         font-size: 17px;
         line-height: 20px;
-        color: #03AC00;
+        color: ${({ totalBalance }) => (totalBalance > 0) ? ("#03AC00") : (totalBalance === 0 ? ("#000000") : ("#C70000")) };
     }
 `
