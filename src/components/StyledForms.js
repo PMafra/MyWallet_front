@@ -15,6 +15,7 @@ const StyledInput = styled.input`
     padding: 0px 15px;
     font-size: 20px;
     color: #000000;
+    outline: none;
 `
 const StyledButton = styled.button`
     height: 46px;
@@ -29,6 +30,7 @@ const StyledButton = styled.button`
     line-height: 23.5px;
     border-radius: 5px;
     border: none;
+    opacity: ${({ loading }) => loading ? 0.6 : 1};
 `
 export {
     StyledForm,
