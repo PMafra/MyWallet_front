@@ -1,26 +1,44 @@
+import React from "react";
 import styled from "styled-components";
+import { useState, useContext } from "react";
+import NewRecordContext from "../store/NewRecordContext";
 
 export default function Records () {
+
+    const [totalBalance, setTotalBalance] = useState("0,00"); 
+
+    const { records } = useContext(NewRecordContext);
+
     return (
         <StyledRecordsContainer>
-            {false ? (
-                <StyledNoRecords>
-                    <p>
-                        Não há registros de entrada ou saída
-                    </p>
-                </StyledNoRecords>
-            ) : ("")}
             <StyledRecordsList>
-                <StyledRecord>
-                    <time className="fontClass">30/11</time>
-                    <p className="fontClass">Mercado alalla lasdasddd asdfsadfsda asdf churrasc paparoor</p>
-                    <span className="fontClass">50000000,00</span>
-                </StyledRecord>
+
+                {records.length !== 0 ? (
+                    records.map(record => 
+                        
+                    <StyledRecord>
+                        <div className="group-date-description">
+                            <time className="fontClass">{record.date}</time>
+                            <p className="fontClass">{record.description}</p>
+                        </div>
+                        <span className="fontClass">{record.value}</span>
+                    </StyledRecord>   
+                        
+                    )
+                ) : (
+                    <StyledNoRecords>
+                        <p>
+                            Não há registros de entrada ou saída
+                        </p>
+                    </StyledNoRecords>
+                )}
+
+
             </StyledRecordsList>
 
             <StyledBalanceBox>
                 <h3>SALDO</h3>
-                <span>VALUE</span>
+                <span>{totalBalance}</span>
             </StyledBalanceBox>
         </StyledRecordsContainer>
     )
@@ -68,6 +86,12 @@ const StyledRecordsList = styled.ul`
 const StyledRecord = styled.li`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+
+    .group-date-description {
+        display: flex;
+        flex-direction: row;
+    }
 
     .fontClass {
         font-weight: 400;

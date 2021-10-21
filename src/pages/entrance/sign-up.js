@@ -51,6 +51,7 @@ export default function SignUp () {
             setLoading(false);
             console.log(`Bad Request: ${isCorrectInfo.error.details[0].message}`);
             console.log("Não passou")
+            console.log(isCorrectInfo);
             return false;
         }
         return true;
