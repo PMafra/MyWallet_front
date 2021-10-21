@@ -27,13 +27,13 @@ export default function Records () {
         <StyledRecordsContainer>
             <StyledRecordsList>
                 {records.length !== 0 ? (
-                    records.map((record, i) => 
-                        <StyledRecord key={i} isAddRecord={record.isAddRecord}>
+                    records.map(({date, description, value, isAddRecord}, i) => 
+                        <StyledRecord key={i} isAddRecord={isAddRecord}>
                             <div className="group-date-description">
-                                <time className="fontClass">{record.date}</time>
-                                <p className="fontClass">{record.description}</p>
+                                <time className="fontClass">{date}</time>
+                                <p className="fontClass">{description}</p>
                             </div>
-                            <span className="fontClass">{record.value}</span>
+                            <span className="fontClass">{value}</span>
                         </StyledRecord>   
                     )
                 ) : (
