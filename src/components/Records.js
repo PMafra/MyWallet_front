@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { useState, useContext, useEffect } from "react";
 import RecordsContext from "../store/RecordsContext";
+import ColorModeContext from "../store/ColorModeContext";
 
 export default function Records () {
 
     const [totalBalance, setTotalBalance] = useState(0); 
-
     const { records } = useContext(RecordsContext);
+    const { isDarkMode } = useContext(ColorModeContext);
 
     useEffect(() => {
 
@@ -24,11 +25,11 @@ export default function Records () {
     }, [])
 
     return (
-        <StyledRecordsContainer>
+        <StyledRecordsContainer isDarkMode={isDarkMode}>
             <StyledRecordsList>
                 {records.length !== 0 ? (
                     records.map(({date, description, value, isAddRecord}, i) => 
-                        <StyledRecord key={i} isAddRecord={isAddRecord}>
+                        <StyledRecord key={i} isAddRecord={isAddRecord} isDarkMode={isDarkMode}>
                             <div className="group-date-description">
                                 <time className="fontClass">{date}</time>
                                 <p className="fontClass">{description}</p>
@@ -50,7 +51,7 @@ export default function Records () {
                     </StyledNoRecords>
                 )}
             </StyledRecordsList>
-            <StyledBalanceBox totalBalance={totalBalance}>
+            <StyledBalanceBox totalBalance={totalBalance} isDarkMode={isDarkMode}>
                 <h3>SALDO</h3>
                 <span>
                     {totalBalance % 1 === 0 ? (
@@ -70,10 +71,11 @@ const StyledRecordsContainer = styled.div`
     width: 100%;
     max-width: 326px;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: ${({isDarkMode}) => isDarkMode ? "#000000" : "#ffffff"};
     border-radius: 5px;
     padding: 0 12px 0 15px;
     position: relative;
+    border: ${({isDarkMode}) => isDarkMode ? "1px solid #ffffff" : "none"};
 `
 const StyledNoRecords = styled.div`
     width: 100%;
@@ -128,7 +130,7 @@ const StyledRecord = styled.li`
     }
 
     p {
-        color: #000000;
+        color: ${({isDarkMode}) => isDarkMode ? "#ffffff" : "#000000"};
         word-break: break-all;
     }
 
@@ -150,13 +152,13 @@ const StyledBalanceBox = styled.div`
     bottom: 10px;
     border-top: 1px solid #e8e8e8;
     padding-top: 8px;
-    box-shadow: 0 -6px 5px -5px #d8d8d8;
+    box-shadow: ${({isDarkMode}) => isDarkMode ? "none" : "0 -6px 5px -5px #d8d8d8"};
     
     h3 {
         font-weight: 700;
         font-size: 17px;
         line-height: 20px;
-        color: #000000;
+        color: ${({isDarkMode}) => isDarkMode ? "#ffffff" : "#000000"};
     }
     span {
         font-weight: 400;

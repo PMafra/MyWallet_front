@@ -9,12 +9,12 @@ const StyledForm = styled.form`
 const StyledInput = styled.input`
     height: 58px;
     width: 326px;
-    background-color: #ffffff;
-    border: none;
+    background-color: ${({isDarkMode}) => isDarkMode ? "#000000" : "#ffffff"};
+    border: ${({isDarkMode}) => isDarkMode ? "1px solid #ffffff" : "none"};
     border-radius: 5px;
     padding: 0px 15px;
     font-size: 20px;
-    color: #000000;
+    color: ${({isDarkMode}) => isDarkMode ? "#ffffff" : "#000000"};
     outline: none;
 `
 const StyledButton = styled.button`

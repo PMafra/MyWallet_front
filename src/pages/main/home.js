@@ -5,11 +5,13 @@ import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-
 import Records from "../../components/Records";
 import { Link, useHistory } from "react-router-dom";
 import RecordsContext from "../../store/RecordsContext";
+import ColorModeContext from "../../store/ColorModeContext";
 import { useContext } from "react";
 
 export default function Home () {
 
     const { setIsAddRecord } = useContext(RecordsContext);
+    const { isDarkMode, setIsDarkMode } = useContext(ColorModeContext);
     const history = useHistory();
 
     const logOut = () => {
@@ -19,9 +21,12 @@ export default function Home () {
     }
 
     return (
-        <StyledPageContainer>
+        <StyledPageContainer isDarkMode={isDarkMode}>
             <StyledHeaderBox>
                 <StyledHeader>Olá, Fulano</StyledHeader>
+                <StyledSwitchModeButton onClick={() => setIsDarkMode(!isDarkMode)} isDarkMode={isDarkMode}>
+                    {isDarkMode ? "Light" : "Dark"}
+                </StyledSwitchModeButton>
                 <StyledLogOutIcon onClick={() => logOut()}/>
             </StyledHeaderBox>
             <Records />
@@ -48,6 +53,18 @@ const StyledHeaderBox = styled.div`
     justify-content: space-between;
     width: 100%;
     max-width: 326px;
+`
+const StyledSwitchModeButton = styled.button`
+    background-color: ${({isDarkMode}) => isDarkMode ? "#A966D6" : "#000000"};
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 700;
+    :hover {
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    }
 `
 const StyledLogOutIcon = styled(IoLogOutOutline)`
     font-size: 32px;

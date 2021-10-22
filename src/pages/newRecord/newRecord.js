@@ -6,10 +6,12 @@ import RecordsContext from "../../store/RecordsContext";
 import { useContext, useState } from "react";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
+import ColorModeContext from "../../store/ColorModeContext";
 
 export default function NewRecord () {
 
     const { isAddRecord, setRecords, records } = useContext(RecordsContext);
+    const { isDarkMode } = useContext(ColorModeContext);
     const history = useHistory();
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
@@ -33,7 +35,7 @@ export default function NewRecord () {
     }
 
     return (
-        <StyledPageContainer>
+        <StyledPageContainer isDarkMode={isDarkMode}>
             <StyledHeaderBox>
                 <StyledHeader>
                     {isAddRecord ? (
@@ -43,11 +45,9 @@ export default function NewRecord () {
                     )}
                 </StyledHeader>
             </StyledHeaderBox>
-            <StyledForm onSubmit={e => {
-                    addNewRecord(e);
-                }}>
-                <StyledInput placeholder="Valor" type="number" step="any" value={value} onChange={e => setValue(e.target.value)} required></StyledInput>
-                <StyledInput placeholder="Descrição" type="text" value={description} onChange={e => setDescription(e.target.value)} required></StyledInput>
+            <StyledForm onSubmit={e => addNewRecord(e)}>
+                <StyledInput placeholder="Valor" type="number" step="any" value={value} onChange={e => setValue(e.target.value)} isDarkMode={isDarkMode} required></StyledInput>
+                <StyledInput placeholder="Descrição" type="text" value={description} onChange={e => setDescription(e.target.value)} isDarkMode={isDarkMode} required></StyledInput>
                 <StyledButton type="submit">
                     {isAddRecord ? (
                         "Salvar entrada"

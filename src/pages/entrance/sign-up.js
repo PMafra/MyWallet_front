@@ -2,8 +2,9 @@ import StyledPageContainer from "../../components/StyledPageContainer";
 import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/StyledSignPage";
 import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Joi from "joi";
+import ColorModeContext from "../../store/ColorModeContext";
 
 export default function SignUp () {
 
@@ -13,6 +14,7 @@ export default function SignUp () {
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const { isDarkMode } = useContext(ColorModeContext); 
     const passwordRules = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     const userInfoSchema = Joi.object().length(4).keys({
         userName: Joi.string().alphanum().min(3).max(30).required(),
@@ -58,7 +60,7 @@ export default function SignUp () {
     }
 
     return (
-        <StyledPageContainer>
+        <StyledPageContainer isDarkMode={isDarkMode}>
             <StyledSignPage>
                 <StyledLogo>
                     MyWallet
@@ -67,10 +69,10 @@ export default function SignUp () {
                     setLoading(true);
                     signUpRequest(e);
                 }}>
-                    <StyledInput placeholder="Nome" type="text" value={userName} onChange={e => setUserName(e.target.value)} required/>
-                    <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
-                    <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
-                    <StyledInput placeholder="Confirme a senha" type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} required/>
+                    <StyledInput placeholder="Nome" type="text" value={userName} onChange={e => setUserName(e.target.value)} isDarkMode={isDarkMode} required/>
+                    <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} isDarkMode={isDarkMode} required/>
+                    <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} isDarkMode={isDarkMode} required/>
+                    <StyledInput placeholder="Confirme a senha" type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} isDarkMode={isDarkMode} required/>
                     <StyledButton type="submit" loading={loading} disabled={loading}>{loading ? "Loading..." : "Cadastrar"}</StyledButton>
                 </StyledForm>
                 <StyledLogSwap>

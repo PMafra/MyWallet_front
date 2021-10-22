@@ -2,7 +2,8 @@ import StyledPageContainer from "../../components/StyledPageContainer";
 import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/StyledSignPage";
 import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import ColorModeContext from "../../store/ColorModeContext";
 
 export default function SignIn () {
 
@@ -11,6 +12,7 @@ export default function SignIn () {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const { isDarkMode } = useContext(ColorModeContext);
 
     function signInRequest(event) {
         event.preventDefault();
@@ -33,7 +35,7 @@ export default function SignIn () {
 
 
     return (
-        <StyledPageContainer>
+        <StyledPageContainer isDarkMode={isDarkMode}>
             <StyledSignPage>
                 <StyledLogo>
                     MyWallet
@@ -42,8 +44,8 @@ export default function SignIn () {
                     setLoading(true);
                     signInRequest(e);
                 }}>
-                    <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} required></StyledInput>
-                    <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} required></StyledInput>
+                    <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} isDarkMode={isDarkMode} required></StyledInput>
+                    <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} isDarkMode={isDarkMode} required></StyledInput>
                     <StyledButton type="submit" loading={loading} disabled={loading}>{loading ? "Loading..." : "Cadastrar"}</StyledButton>
                 </StyledForm>
                 <StyledLogSwap>
