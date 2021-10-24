@@ -6,7 +6,7 @@ import Records from "../../components/Records";
 import { Link, useHistory } from "react-router-dom";
 import RecordsContext from "../../store/RecordsContext";
 import ColorModeContext from "../../store/ColorModeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../../store/UserContext";
 import { signOut } from "../../services/api";
 
@@ -16,6 +16,7 @@ export default function Home () {
     const { isDarkMode, setIsDarkMode } = useContext(ColorModeContext);
     const history = useHistory();
     const { userName, token } = useContext(UserContext);
+    const [isLogOut, setIsLogOut] = useState(false);
 
     const signOutRequest = () => {
         signOut(token).then((res) => {
@@ -32,8 +33,11 @@ export default function Home () {
                 <StyledSwitchModeButton onClick={() => setIsDarkMode(!isDarkMode)} isDarkMode={isDarkMode}>
                     {isDarkMode ? "Light" : "Dark"}
                 </StyledSwitchModeButton>
-                <StyledLogOutIcon onClick={() => signOutRequest()}/>
+                <StyledLogOutIcon onClick={() => setIsLogOut(!isLogOut)}/>
             </StyledHeaderBox>
+            {isLogOut ? (
+                <StyledLogOutConfirmation onClick={() => signOutRequest()}>SAIR</StyledLogOutConfirmation>
+            ) : ("")}
             <Records />
             <StyledButtonsBox>
                 <StyledNewRecordButton>
@@ -112,4 +116,21 @@ const StyledAddIcon = styled(IoAddCircleOutline)`
 const StyledRemoveIcon = styled(IoRemoveCircleOutline)`
     font-size: 30px;
     color: #ffffff;
+`
+const StyledLogOutConfirmation = styled.div`
+    position: fixed;
+    top: 65px;
+    right: 10px;
+    background-color: #A966D6;
+    height: 80px;
+    width: 80px;
+    z-index: 5;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
 `

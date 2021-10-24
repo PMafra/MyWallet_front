@@ -14,6 +14,10 @@ export default function Records () {
     const { token } = useContext(UserContext);
     const recordsEndRef = useRef(null)
 
+    const scrollToBottom = () => {
+        recordsEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+
     useEffect(() => {
         getUserRecords(token).then(res => {
             setRecords(res.data);
@@ -24,22 +28,18 @@ export default function Records () {
 
     useEffect(() => {
         let sumOfRecordsValues = 0;
-        records.forEach(record => {
-            if (record.isAddRecord) {
-                sumOfRecordsValues += record.value;
+        records.forEach(({ isAddRecord, value }) => {
+            if (isAddRecord) {
+                sumOfRecordsValues += value;
             } else {
-                sumOfRecordsValues -= record.value;
+                sumOfRecordsValues -= value;
             }
         })
         setTotalBalance(sumOfRecordsValues);
 
-        scrollToBottom();
+        setTimeout(() => scrollToBottom(), 1000);
 
     }, [records])
-
-    const scrollToBottom = () => {
-        recordsEndRef.current.scrollIntoView({ behavior: "smooth" })
-    }
 
     return (
         <StyledRecordsContainer isDarkMode={isDarkMode}>
@@ -170,7 +170,7 @@ const StyledBalanceBox = styled.div`
     border-top: 1px solid #e8e8e8;
     padding-top: 8px;
     box-shadow: ${({isDarkMode}) => isDarkMode ? "none" : "0 -6px 5px -5px #d8d8d8"};
-    background-color: #ffffff;
+    background-color: ${({isDarkMode}) => isDarkMode ? "#000000" : "#ffffff"};
     opacity: 0.9;
     
     h3 {
