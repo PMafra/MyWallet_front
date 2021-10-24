@@ -3,31 +3,38 @@ import styled from "styled-components";
 import {StyledHeader} from "../../components/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
 import Records from "../../components/Records";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import RecordsContext from "../../store/RecordsContext";
 import ColorModeContext from "../../store/ColorModeContext";
 import { useContext } from "react";
+import UserContext from "../../store/UserContext";
+import { signOut } from "../../services/api";
 
 export default function Home () {
 
     const { setIsAddRecord } = useContext(RecordsContext);
     const { isDarkMode, setIsDarkMode } = useContext(ColorModeContext);
     const history = useHistory();
+    const location = useLocation();
+    const { userName, token } = useContext(UserContext);
 
-    const logOut = () => {
-
-        
+    const signOutRequest = () => {
+        signOut(token).then((res) => {
+            history.push("/");
+        }).catch(err => {
+            console.log(err.response.data);
+        });
         history.push("/");
     }
 
     return (
         <StyledPageContainer isDarkMode={isDarkMode}>
             <StyledHeaderBox>
-                <StyledHeader>Olá, Fulano</StyledHeader>
+                <StyledHeader userName={userName.length}>Olá, {userName}</StyledHeader>
                 <StyledSwitchModeButton onClick={() => setIsDarkMode(!isDarkMode)} isDarkMode={isDarkMode}>
                     {isDarkMode ? "Light" : "Dark"}
                 </StyledSwitchModeButton>
-                <StyledLogOutIcon onClick={() => logOut()}/>
+                <StyledLogOutIcon onClick={() => signOutRequest()}/>
             </StyledHeaderBox>
             <Records />
             <StyledButtonsBox>
@@ -62,9 +69,7 @@ const StyledSwitchModeButton = styled.button`
     border-radius: 5px;
     color: #ffffff;
     font-weight: 700;
-    :hover {
-        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    }
+    box-shadow: ${({isDarkMode}) => isDarkMode ? "0 12px 16px 0 rgba(255,255,255,0.24), 0 17px 50px 0 rgba(255,255,255,0.19)" : "0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)"};
 `
 const StyledLogOutIcon = styled(IoLogOutOutline)`
     font-size: 32px;

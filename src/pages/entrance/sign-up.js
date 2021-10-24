@@ -5,25 +5,29 @@ import { Link, useHistory } from "react-router-dom";
 import { useContext, useState } from "react";
 import Joi from "joi";
 import ColorModeContext from "../../store/ColorModeContext";
+import { signUp } from "../../services/api";
+import UserContext from "../../store/UserContext";
 
 export default function SignUp () {
 
-    const [userName, setUserName] = useState("");
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-    const { isDarkMode } = useContext(ColorModeContext); 
+    const { isDarkMode } = useContext(ColorModeContext);
+    const { setUserName } = useContext(UserContext);
+
     const passwordRules = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     const userInfoSchema = Joi.object().length(4).keys({
-        userName: Joi.string().alphanum().min(3).max(30).required(),
+        name: Joi.string().min(1).max(30).required(),
         email: Joi.string().required(),
         password: Joi.string().pattern(passwordRules).required(),
         passwordConfirmation: Joi.ref('password'),
     });
     const signUpBody = {
-        userName,
+        name,
         email,
         password,
     }
@@ -34,14 +38,15 @@ export default function SignUp () {
         const isAllCorrect = validateUserInputs();
         if (!isAllCorrect) return;
 
-        // signUp(signUpBody).then((res) => {
+        signUp(signUpBody).then((res) => {
+            setUserName(name);
+            history.push("/");
+        }).catch(err => {
+            console.log(err.response.data);
+            setLoading(false);
+        });
 
-        //     history.push("/");
-        // }).catch(err => {
-        //     setLoading(false);
-        // });
-        console.log("passou")
-        setTimeout(() => setLoading(false), 2000);
+        setLoading(false);
     }
 
     const validateUserInputs = () => {
@@ -52,8 +57,6 @@ export default function SignUp () {
         if (isCorrectInfo.error) {
             setLoading(false);
             console.log(`Bad Request: ${isCorrectInfo.error.details[0].message}`);
-            console.log("Não passou")
-            console.log(isCorrectInfo);
             return false;
         }
         return true;
@@ -69,7 +72,7 @@ export default function SignUp () {
                     setLoading(true);
                     signUpRequest(e);
                 }}>
-                    <StyledInput placeholder="Nome" type="text" value={userName} onChange={e => setUserName(e.target.value)} isDarkMode={isDarkMode} required/>
+                    <StyledInput placeholder="Nome" type="text" value={name} onChange={e => setName(e.target.value)} isDarkMode={isDarkMode} required/>
                     <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} isDarkMode={isDarkMode} required/>
                     <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} isDarkMode={isDarkMode} required/>
                     <StyledInput placeholder="Confirme a senha" type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} isDarkMode={isDarkMode} required/>
