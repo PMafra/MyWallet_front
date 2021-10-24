@@ -36,7 +36,9 @@ export default function Home () {
                 <StyledLogOutIcon onClick={() => setIsLogOut(!isLogOut)}/>
             </StyledHeaderBox>
             {isLogOut ? (
-                <StyledLogOutConfirmation onClick={() => signOutRequest()}>SAIR</StyledLogOutConfirmation>
+                <StyledLogOutConfirmation onClick={() => signOutRequest()}>
+                    SAIR
+                </StyledLogOutConfirmation>
             ) : ("")}
             <Records />
             <StyledButtonsBox>
@@ -72,10 +74,18 @@ const StyledSwitchModeButton = styled.button`
     color: #ffffff;
     font-weight: 700;
     box-shadow: ${({isDarkMode}) => isDarkMode ? "0 12px 16px 0 rgba(255,255,255,0.24), 0 17px 50px 0 rgba(255,255,255,0.19)" : "0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)"};
+    cursor: pointer;
+    :hover, :active{
+        transform: translate(3px, -3px);
+    }
 `
 const StyledLogOutIcon = styled(IoLogOutOutline)`
     font-size: 32px;
     color: #ffffff;
+    cursor: pointer;
+    :hover, :active{
+        transform: translate(3px, -3px);
+    }
 `
 const StyledButtonsBox = styled.div`
     display: flex;
@@ -91,6 +101,11 @@ const StyledNewRecordButton = styled.button`
     border: none;
     border-radius: 5px;
     padding: 10px;
+    cursor: pointer;
+    
+    :hover, :active{
+        transform: translate(3px, -3px);
+    }
 
     .buttonLink {
         height: 100%;
@@ -119,18 +134,24 @@ const StyledRemoveIcon = styled(IoRemoveCircleOutline)`
 `
 const StyledLogOutConfirmation = styled.div`
     position: fixed;
-    top: 65px;
-    right: 10px;
     background-color: #A966D6;
+    top: calc(50vh - 100px);
     height: 80px;
     width: 80px;
     z-index: 5;
     border-radius: 50%;
     border: 2px solid #ffffff;
+    box-shadow:
+        0 0 0 10px hsl(0, 0%, 80%),
+        0 0 0 15px hsl(0, 0%, 90%);
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
+    :hover, :active{
+        transform: translate(3px, -3px);
+    }
 `

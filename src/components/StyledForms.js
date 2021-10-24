@@ -31,6 +31,10 @@ const StyledButton = styled.button`
     border-radius: 5px;
     border: none;
     opacity: ${({ loading }) => loading ? 0.6 : 1};
+    cursor: pointer;
+    :hover, :active{
+        transform: translate(3px, -3px);
+    }
 `
 export {
     StyledForm,

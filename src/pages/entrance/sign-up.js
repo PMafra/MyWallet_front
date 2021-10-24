@@ -3,7 +3,6 @@ import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/Styl
 import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
 import { Link, useHistory } from "react-router-dom";
 import { useContext, useState } from "react";
-import Joi from "joi";
 import ColorModeContext from "../../store/ColorModeContext";
 import { signUp } from "../../services/api";
 
@@ -17,13 +16,6 @@ export default function SignUp () {
     const history = useHistory();
     const { isDarkMode } = useContext(ColorModeContext);
 
-    const passwordRules = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    const userInfoSchema = Joi.object().length(4).keys({
-        name: Joi.string().min(1).max(30).required(),
-        email: Joi.string().required(),
-        password: Joi.string().pattern(passwordRules).required(),
-        passwordConfirmation: Joi.ref('password'),
-    });
     const signUpBody = {
         name,
         email,
@@ -33,8 +25,10 @@ export default function SignUp () {
     function signUpRequest(event) {
         event.preventDefault();
 
-        const isAllCorrect = validateUserInputs();
-        if (!isAllCorrect) return;
+        if (password !== passwordConfirmation) {
+            setLoading(false);
+            return;
+        }
 
         signUp(signUpBody).then((res) => {
             history.push("/");
@@ -44,19 +38,6 @@ export default function SignUp () {
         });
 
         setLoading(false);
-    }
-
-    const validateUserInputs = () => {
-        const isCorrectInfo = userInfoSchema.validate({
-            ...signUpBody,
-            passwordConfirmation
-        });
-        if (isCorrectInfo.error) {
-            setLoading(false);
-            console.log(`Bad Request: ${isCorrectInfo.error.details[0].message}`);
-            return false;
-        }
-        return true;
     }
 
     return (
