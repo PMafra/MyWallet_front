@@ -14,7 +14,7 @@ export default function SignIn () {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
     const { isDarkMode } = useContext(ColorModeContext);
-    const { setToken } = useContext(UserContext);
+    const { setToken, setUserName } = useContext(UserContext);
 
     function signInRequest(event) {
         event.preventDefault();
@@ -25,7 +25,12 @@ export default function SignIn () {
         }
 
         signIn(signInBody).then((res) => {
-            setToken(res.data);
+            const {
+                token,
+                name
+            } = res.data;
+            setUserName(name);
+            setToken(token);
             history.push("/home");
         }).catch(err => {
             console.log(err.response.data);

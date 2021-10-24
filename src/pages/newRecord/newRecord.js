@@ -7,11 +7,14 @@ import { useContext, useState } from "react";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import ColorModeContext from "../../store/ColorModeContext";
+import UserContext from "../../store/UserContext";
+import { sendNewRecord } from "../../services/api";
 
 export default function NewRecord () {
 
-    const { isAddRecord, setRecords, records } = useContext(RecordsContext);
+    const { isAddRecord } = useContext(RecordsContext);
     const { isDarkMode } = useContext(ColorModeContext);
+    const { token } = useContext(UserContext);
     const history = useHistory();
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
@@ -19,19 +22,20 @@ export default function NewRecord () {
     const addNewRecord = (event) => {
         event.preventDefault();
 
-        const newRecord = {
+        const newRecordBody = {
             date: dayjs().format("DD/MM"),
             description,
             value: Number(value),
             isAddRecord
         }
 
-        setRecords([
-            ...records,
-            newRecord
-        ])
-
-        history.push("/home");
+        sendNewRecord(token, newRecordBody).then(res => {
+            console.log(res.data);
+            setValue("");
+            setDescription("");
+        }).catch(err => {
+            console.log(err.response.data);
+        })
     }
 
     return (

@@ -1,17 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import RecordsContext from "../store/RecordsContext";
 import ColorModeContext from "../store/ColorModeContext";
+import { getUserRecords } from "../services/api";
+import UserContext from "../store/UserContext";
 
 export default function Records () {
 
     const [totalBalance, setTotalBalance] = useState(0); 
-    const { records } = useContext(RecordsContext);
+    const { setRecords, records } = useContext(RecordsContext);
     const { isDarkMode } = useContext(ColorModeContext);
+    const { token } = useContext(UserContext);
+    const recordsEndRef = useRef(null)
 
     useEffect(() => {
+        getUserRecords(token).then(res => {
+            setRecords(res.data);
+        }).catch(err => {
+            console.log(err.response)
+        })
+    }, [])
 
+    useEffect(() => {
         let sumOfRecordsValues = 0;
         records.forEach(record => {
             if (record.isAddRecord) {
@@ -22,7 +33,13 @@ export default function Records () {
         })
         setTotalBalance(sumOfRecordsValues);
 
-    }, [])
+        scrollToBottom();
+
+    }, [records])
+
+    const scrollToBottom = () => {
+        recordsEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
 
     return (
         <StyledRecordsContainer isDarkMode={isDarkMode}>
@@ -50,6 +67,7 @@ export default function Records () {
                         </p>
                     </StyledNoRecords>
                 )}
+                <div ref={recordsEndRef} />
             </StyledRecordsList>
             <StyledBalanceBox totalBalance={totalBalance} isDarkMode={isDarkMode}>
                 <h3>SALDO</h3>
@@ -97,7 +115,7 @@ const StyledRecordsList = styled.ul`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    height: calc(100vh - 263px);
+    height: calc(100vh - 244px);
     overflow-y: scroll;
     padding: 15px 0px;
 
@@ -141,7 +159,6 @@ const StyledRecord = styled.li`
         align-items: center;
         margin-left: 10px;
     }
-
 `
 const StyledBalanceBox = styled.div`
     display: flex;
@@ -153,6 +170,8 @@ const StyledBalanceBox = styled.div`
     border-top: 1px solid #e8e8e8;
     padding-top: 8px;
     box-shadow: ${({isDarkMode}) => isDarkMode ? "none" : "0 -6px 5px -5px #d8d8d8"};
+    background-color: #ffffff;
+    opacity: 0.9;
     
     h3 {
         font-weight: 700;

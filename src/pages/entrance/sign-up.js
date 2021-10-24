@@ -6,7 +6,6 @@ import { useContext, useState } from "react";
 import Joi from "joi";
 import ColorModeContext from "../../store/ColorModeContext";
 import { signUp } from "../../services/api";
-import UserContext from "../../store/UserContext";
 
 export default function SignUp () {
 
@@ -17,7 +16,6 @@ export default function SignUp () {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
     const { isDarkMode } = useContext(ColorModeContext);
-    const { setUserName } = useContext(UserContext);
 
     const passwordRules = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     const userInfoSchema = Joi.object().length(4).keys({
@@ -39,7 +37,6 @@ export default function SignUp () {
         if (!isAllCorrect) return;
 
         signUp(signUpBody).then((res) => {
-            setUserName(name);
             history.push("/");
         }).catch(err => {
             console.log(err.response.data);

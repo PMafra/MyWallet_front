@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {StyledHeader} from "../../components/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
 import Records from "../../components/Records";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import RecordsContext from "../../store/RecordsContext";
 import ColorModeContext from "../../store/ColorModeContext";
 import { useContext } from "react";
@@ -15,7 +15,6 @@ export default function Home () {
     const { setIsAddRecord } = useContext(RecordsContext);
     const { isDarkMode, setIsDarkMode } = useContext(ColorModeContext);
     const history = useHistory();
-    const location = useLocation();
     const { userName, token } = useContext(UserContext);
 
     const signOutRequest = () => {
@@ -24,7 +23,6 @@ export default function Home () {
         }).catch(err => {
             console.log(err.response.data);
         });
-        history.push("/");
     }
 
     return (
