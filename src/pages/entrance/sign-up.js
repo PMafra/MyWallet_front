@@ -1,10 +1,11 @@
 import StyledPageContainer from "../../components/StyledPageContainer";
 import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/StyledSignPage";
-import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
+import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../components/StyledForms";
 import { Link, useHistory } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ColorModeContext from "../../store/ColorModeContext";
 import { signUp } from "../../services/api";
+import InputContext from "../../store/InputContext";
 
 export default function SignUp () {
 
@@ -13,8 +14,11 @@ export default function SignUp () {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [loading, setLoading] = useState(false);
+    const passwordRules = "Sua senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caracter especial.";
     const history = useHistory();
     const { isDarkMode } = useContext(ColorModeContext);
+    const { alertMessage, setAlertMessage } = useContext(InputContext);
+    const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
     const signUpBody = {
         name,
@@ -22,21 +26,27 @@ export default function SignUp () {
         password,
     }
 
+    useEffect(() => {
+        setAlertMessage(passwordRules);
+    }, [])
+
     function signUpRequest(event) {
         event.preventDefault();
-
+        setLoading(true);
         if (password !== passwordConfirmation) {
             setLoading(false);
+            setAlertMessage("Sua confirmação de senha está diferente da original!");
+            setTimeout(() => setAlertMessage(passwordRules), 4000);
             return;
         }
-
         signUp(signUpBody).then((res) => {
+            setLoading(false);
             history.push("/");
         }).catch(err => {
-            console.log(err.response.data);
+            setAlertMessage(err.response.data);
+            setTimeout(() => setAlertMessage(passwordRules), 4000);
             setLoading(false);
         });
-
         setLoading(false);
     }
 
@@ -50,11 +60,47 @@ export default function SignUp () {
                     setLoading(true);
                     signUpRequest(e);
                 }}>
-                    <StyledInput placeholder="Nome" type="text" value={name} onChange={e => setName(e.target.value)} isDarkMode={isDarkMode} required/>
-                    <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} isDarkMode={isDarkMode} required/>
-                    <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} isDarkMode={isDarkMode} required/>
-                    <StyledInput placeholder="Confirme a senha" type="password" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} isDarkMode={isDarkMode} required/>
-                    <StyledButton type="submit" loading={loading} disabled={loading}>{loading ? "Loading..." : "Cadastrar"}</StyledButton>
+                    <StyledInput 
+                        placeholder="Nome" 
+                        type="text" 
+                        value={name} 
+                        onChange={e => setName(e.target.value)} 
+                        isDarkMode={isDarkMode} 
+                        minLength="1" 
+                        maxLength="30" 
+                        required />
+                    <StyledInput 
+                        placeholder="E-mail" 
+                        type="email" 
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
+                        isDarkMode={isDarkMode}
+                        maxLength="50"
+                        required/>
+                    <StyledInput
+                        placeholder="Senha" 
+                        type="password" 
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        isDarkMode={isDarkMode} 
+                        pattern={passwordRegex}
+                        required/>
+                    <StyledInput 
+                        placeholder="Confirme a senha" 
+                        type="password"
+                        value={passwordConfirmation} 
+                        onChange={e => setPasswordConfirmation(e.target.value)} 
+                        isDarkMode={isDarkMode} 
+                        required/>
+                    <StyledAlertBox>
+                        {alertMessage}
+                    </StyledAlertBox>
+                    <StyledButton 
+                        type="submit" 
+                        loading={loading} 
+                        disabled={loading}>
+                        {loading ? "Loading..." : "Cadastrar"}
+                    </StyledButton>
                 </StyledForm>
                 <StyledLogSwap>
                     <Link to="/" className="swapLink">

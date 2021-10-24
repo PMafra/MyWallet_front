@@ -16,6 +16,17 @@ const StyledInput = styled.input`
     font-size: 20px;
     color: ${({isDarkMode}) => isDarkMode ? "#ffffff" : "#000000"};
     outline: none;
+
+    :not(:placeholder-shown):invalid {
+        border: 2px solid red;
+    }
+`
+const StyledAlertBox = styled.span`
+    color: #ffffff;
+    font-size: 15px;
+    width: 326px;
+    text-align: left;
+    word-break: break-all;
 `
 const StyledButton = styled.button`
     height: 46px;
@@ -39,5 +50,6 @@ const StyledButton = styled.button`
 export {
     StyledForm,
     StyledInput,
-    StyledButton
+    StyledAlertBox,
+    StyledButton,
 }

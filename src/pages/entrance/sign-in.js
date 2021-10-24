@@ -1,11 +1,12 @@
 import StyledPageContainer from "../../components/StyledPageContainer";
 import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/StyledSignPage";
-import { StyledForm, StyledInput, StyledButton } from "../../components/StyledForms";
+import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../components/StyledForms";
 import { Link, useHistory } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ColorModeContext from "../../store/ColorModeContext";
 import { signIn } from "../../services/api";
 import UserContext from "../../store/UserContext";
+import InputContext from "../../store/InputContext";
 
 export default function SignIn () {
 
@@ -15,15 +16,20 @@ export default function SignIn () {
     const history = useHistory();
     const { isDarkMode } = useContext(ColorModeContext);
     const { setToken, setUserName } = useContext(UserContext);
+    const { alertMessage, setAlertMessage } = useContext(InputContext);
+    const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
+    const initialMessage = "Faça login com sua conta!";
+
+    useEffect(() => {
+        setAlertMessage(initialMessage);
+    }, [])
 
     function signInRequest(event) {
         event.preventDefault();
-
         const signInBody = {
             email,
             password
         }
-
         signIn(signInBody).then((res) => {
             const {
                 token,
@@ -33,7 +39,8 @@ export default function SignIn () {
             setToken(token);
             history.push("/home");
         }).catch(err => {
-            console.log(err.response.data);
+            setAlertMessage(err.response.data);
+            setTimeout(() => setAlertMessage(initialMessage), 4000);
             setLoading(false);
         });
 
@@ -50,9 +57,31 @@ export default function SignIn () {
                     setLoading(true);
                     signInRequest(e);
                 }}>
-                    <StyledInput placeholder="E-mail" type="email" value={email} onChange={e => setEmail(e.target.value)} isDarkMode={isDarkMode} required />
-                    <StyledInput placeholder="Senha" type="password" value={password} onChange={e => setPassword(e.target.value)} isDarkMode={isDarkMode} required />
-                    <StyledButton type="submit" loading={loading} disabled={loading}>{loading ? "Loading..." : "Entrar"}</StyledButton>
+                    <StyledInput 
+                        placeholder="E-mail" 
+                        type="email" 
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
+                        isDarkMode={isDarkMode} 
+                        maxLength="50" 
+                        required />
+                    <StyledInput 
+                        placeholder="Senha"
+                        type="password"
+                        value={password} 
+                        onChange={e => setPassword(e.target.value)} 
+                        isDarkMode={isDarkMode} 
+                        pattern={passwordRegex}
+                        required />
+                    <StyledAlertBox>
+                        {alertMessage}
+                    </StyledAlertBox>
+                    <StyledButton 
+                        type="submit" 
+                        loading={loading} 
+                        disabled={loading}>
+                        {loading ? "Loading..." : "Entrar"}
+                    </StyledButton>
                 </StyledForm>
                 <StyledLogSwap>
                     <Link to="/sign-up" className="swapLink">
