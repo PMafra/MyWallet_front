@@ -17,12 +17,14 @@ export default function Home () {
     const history = useHistory();
     const { userName, token } = useContext(UserContext);
     const [isLogOut, setIsLogOut] = useState(false);
+    const [logOutMessage, setLogOutMessage] = useState("SAIR");
 
     const signOutRequest = () => {
         signOut(token).then((res) => {
             history.push("/");
         }).catch(err => {
-            console.log(err.response.data);
+            setLogOutMessage("Você já foi deslogado ou a sua sessão expirou. Sairá da página em 5 segundos.");
+            setTimeout(() => history.push("/"), 5000);
         });
     }
 
@@ -37,7 +39,7 @@ export default function Home () {
             </StyledHeaderBox>
             {isLogOut ? (
                 <StyledLogOutConfirmation onClick={() => signOutRequest()} isDarkMode={isDarkMode}>
-                    SAIR
+                    {logOutMessage}
                 </StyledLogOutConfirmation>
             ) : ("")}
             <Records />
@@ -136,8 +138,8 @@ const StyledLogOutConfirmation = styled.div`
     position: fixed;
     background-color: #A966D6;
     top: calc(50vh - 100px);
-    height: 80px;
-    width: 80px;
+    min-height: 80px;
+    min-width: 80px;
     z-index: 5;
     border-radius: 50%;
     border: 2px solid #ffffff;
@@ -149,6 +151,7 @@ const StyledLogOutConfirmation = styled.div`
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    text-align: center;
     :hover, :active{
         transform: translate(3px, -3px);
     }

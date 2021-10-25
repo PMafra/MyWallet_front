@@ -14,7 +14,7 @@ export default function SignUp () {
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [loading, setLoading] = useState(false);
-    const passwordRules = "Sua senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caracter especial.";
+    const passwordRules = "Sua senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma minúscula, um número e um caractere especial.";
     const history = useHistory();
     const { isDarkMode } = useContext(ColorModeContext);
     const { alertMessage, setAlertMessage } = useContext(InputContext);

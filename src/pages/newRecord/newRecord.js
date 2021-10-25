@@ -48,6 +48,8 @@ export default function NewRecord () {
             isAddRecord
         }
         sendNewRecord(token, newRecordBody).then(res => {
+            setAlertMessage(`Novo valor de ${isAddRecord ? "entrada" : "saída"} inserido com sucesso!`);
+            setTimeout(() => setAlertMessage(newRecordMessage), 4000);
             setValue("");
             setDescription("");
         }).catch(err => {
