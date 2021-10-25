@@ -26,6 +26,7 @@ export default function SignIn () {
 
     function signInRequest(event) {
         event.preventDefault();
+        setLoading(true);
         const signInBody = {
             email,
             password
@@ -35,6 +36,7 @@ export default function SignIn () {
                 token,
                 name
             } = res.data;
+            setLoading(false);
             setUserName(name);
             setToken(token);
             history.push("/home");
@@ -43,8 +45,6 @@ export default function SignIn () {
             setTimeout(() => setAlertMessage(initialMessage), 4000);
             setLoading(false);
         });
-
-        setLoading(false);
     }
 
     return (

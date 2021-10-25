@@ -20,24 +20,31 @@ export default function SignUp () {
     const { alertMessage, setAlertMessage } = useContext(InputContext);
     const passwordRegex = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
-    const signUpBody = {
-        name,
-        email,
-        password,
-    }
-
     useEffect(() => {
         setAlertMessage(passwordRules);
     }, [])
 
-    function signUpRequest(event) {
-        event.preventDefault();
-        setLoading(true);
+    const validateRepeatedPassword = () => {
         if (password !== passwordConfirmation) {
             setLoading(false);
             setAlertMessage("Sua confirmação de senha está diferente da original!");
             setTimeout(() => setAlertMessage(passwordRules), 4000);
-            return;
+            return false;
+        }
+        return true;
+    }
+
+    function signUpRequest(event) {
+        event.preventDefault();
+        setLoading(true);
+
+        const isRepeatedPasswordValid = validateRepeatedPassword();
+        if (!isRepeatedPasswordValid) return;
+
+        const signUpBody = {
+            name,
+            email,
+            password,
         }
         signUp(signUpBody).then((res) => {
             setLoading(false);
@@ -47,7 +54,6 @@ export default function SignUp () {
             setTimeout(() => setAlertMessage(passwordRules), 4000);
             setLoading(false);
         });
-        setLoading(false);
     }
 
     return (

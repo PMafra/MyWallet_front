@@ -20,6 +20,7 @@ export default function NewRecord () {
     const history = useHistory();
     const [value, setValue] = useState("");
     const [description, setDescription] = useState("");
+    const [loading, setLoading] = useState(false);
     const newRecordMessage = `Entre com um valor de ${isAddRecord ? "entrada" : "saída"} e uma descrição.`;
 
     useEffect(() => {
@@ -30,6 +31,7 @@ export default function NewRecord () {
         if (Number(value) === 0 || Number(value) < 0) {
             setAlertMessage("O valor inserido não deve ser zero ou negativo!");
             setTimeout(() => setAlertMessage(newRecordMessage), 4000);
+            setLoading(false);
             return false;
         }
         return true;
@@ -37,10 +39,11 @@ export default function NewRecord () {
 
     const addNewRecord = (event) => {
         event.preventDefault();
+        setLoading(true);
 
         const isNumberValueValid = validateNumberValue();
         if (!isNumberValueValid) return;
-        
+
         const newRecordBody = {
             date: dayjs().format("DD/MM"),
             description,
@@ -52,9 +55,11 @@ export default function NewRecord () {
             setTimeout(() => setAlertMessage(newRecordMessage), 4000);
             setValue("");
             setDescription("");
+            setLoading(false);
         }).catch(err => {
             setAlertMessage(err.response.data);
             setTimeout(() => setAlertMessage(newRecordMessage), 4000);
+            setLoading(false);
         })
     }
 
@@ -90,11 +95,18 @@ export default function NewRecord () {
                 <StyledAlertBox>
                     {alertMessage}
                 </StyledAlertBox>
-                <StyledButton type="submit">
-                    {isAddRecord ? (
-                        "Salvar entrada"
+                <StyledButton 
+                    type="submit" 
+                    loading={loading} 
+                    disabled={loading}>
+                    {loading ? (
+                        "Loading..."
                     ) : (
-                        "Salvar saída"
+                        isAddRecord ? (
+                            "Salvar entrada"
+                        ) : (
+                            "Salvar saída"
+                        )
                     )}
                 </StyledButton>
             </StyledForm>
