@@ -50,7 +50,7 @@ export default function SignUp () {
             setLoading(false);
             history.push("/");
         }).catch(err => {
-            setAlertMessage(err.response.data);
+            setAlertMessage(err.response?.data);
             setTimeout(() => setAlertMessage(passwordRules), 4000);
             setLoading(false);
         });

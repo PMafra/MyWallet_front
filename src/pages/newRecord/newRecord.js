@@ -57,7 +57,7 @@ export default function NewRecord () {
             setDescription("");
             setLoading(false);
         }).catch(err => {
-            setAlertMessage(err.response.data);
+            setAlertMessage(err.response?.data);
             setTimeout(() => setAlertMessage(newRecordMessage), 4000);
             setLoading(false);
         })

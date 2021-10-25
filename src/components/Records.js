@@ -12,17 +12,19 @@ export default function Records () {
     const { setRecords, records } = useContext(RecordsContext);
     const { isDarkMode } = useContext(ColorModeContext);
     const { token } = useContext(UserContext);
-    const recordsEndRef = useRef(null)
+    const recordsEndRef = useRef(null);
+    const noRecordsMessage = "Não há registros de entrada ou saída";
+    const [recordsMessage, setRecordsMessage] = useState(noRecordsMessage);
 
     const scrollToBottom = () => {
-        recordsEndRef.current.scrollIntoView({ behavior: "smooth" })
+        recordsEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
 
     useEffect(() => {
         getUserRecords(token).then(res => {
             setRecords(res.data);
         }).catch(err => {
-            console.log(err.response)
+            setRecordsMessage(err.response?.data);
         })
     }, [])
 
@@ -38,7 +40,6 @@ export default function Records () {
         setTotalBalance(sumOfRecordsValues);
 
         setTimeout(() => scrollToBottom(), 1000);
-
     }, [records])
 
     return (
@@ -63,7 +64,7 @@ export default function Records () {
                 ) : (
                     <StyledNoRecords>
                         <p>
-                            Não há registros de entrada ou saída
+                            {recordsMessage}
                         </p>
                     </StyledNoRecords>
                 )}

@@ -8,9 +8,9 @@ const StyledSignPage = styled.div`
     height: 100%;
 `
 const StyledLogo = styled.h1`
-    font-family: 'Saira Stencil One', cursive;
+    font-family: 'Bilbo', cursive;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 50px;
     line-height: 50px;
     color: #ffffff;
     margin-bottom: 24px;

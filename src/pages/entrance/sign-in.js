@@ -41,7 +41,7 @@ export default function SignIn () {
             setToken(token);
             history.push("/home");
         }).catch(err => {
-            setAlertMessage(err.response.data);
+            setAlertMessage(err.response?.data);
             setTimeout(() => setAlertMessage(initialMessage), 4000);
             setLoading(false);
         });
