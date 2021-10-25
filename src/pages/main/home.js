@@ -36,7 +36,7 @@ export default function Home () {
                 <StyledLogOutIcon onClick={() => setIsLogOut(!isLogOut)}/>
             </StyledHeaderBox>
             {isLogOut ? (
-                <StyledLogOutConfirmation onClick={() => signOutRequest()}>
+                <StyledLogOutConfirmation onClick={() => signOutRequest()} isDarkMode={isDarkMode}>
                     SAIR
                 </StyledLogOutConfirmation>
             ) : ("")}
@@ -141,9 +141,7 @@ const StyledLogOutConfirmation = styled.div`
     z-index: 5;
     border-radius: 50%;
     border: 2px solid #ffffff;
-    box-shadow:
-        0 0 0 10px hsl(0, 0%, 80%),
-        0 0 0 15px hsl(0, 0%, 90%);
+    box-shadow: ${({isDarkMode}) => isDarkMode ? "0 0 0 10px hsl(0, 0%, 30%), 0 0 0 15px hsl(0, 0%, 20%)" : "0 0 0 10px hsl(0, 0%, 80%), 0 0 0 15px hsl(0, 0%, 90%)"};
     display: flex;
     justify-content: center;
     align-items: center;

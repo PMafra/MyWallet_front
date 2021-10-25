@@ -27,6 +27,7 @@ const StyledAlertBox = styled.span`
     width: 326px;
     text-align: left;
     word-break: break-all;
+    line-height: 20px;
 `
 const StyledButton = styled.button`
     height: 46px;
