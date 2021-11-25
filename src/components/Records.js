@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState, useContext, useEffect, useRef } from "react";
 import RecordsContext from "../store/RecordsContext";
 import ColorModeContext from "../store/ColorModeContext";
-import { getUserRecords } from "../services/api";
+import { getUserRecords } from "../services/Api";
 import UserContext from "../store/UserContext";
 
 export default function Records () {

@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import SignIn from "./pages/entrance/sign-in";
-import SignUp from "./pages/entrance/sign-up";
-import Home from "./pages/main/home";
-import NewRecord from "./pages/newRecord/newRecord";
+import SignIn from "./pages/entrance/Sign-in";
+import SignUp from "./pages/entrance/Sign-up";
+import Home from "./pages/main/Home";
+import NewRecord from "./pages/newRecord/NewRecord";
 
 export default function AppRoutes () {
 

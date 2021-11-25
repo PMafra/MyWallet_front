@@ -8,7 +8,7 @@ import RecordsContext from "../../store/RecordsContext";
 import ColorModeContext from "../../store/ColorModeContext";
 import { useContext, useState } from "react";
 import UserContext from "../../store/UserContext";
-import { signOut } from "../../services/api";
+import { signOut } from "../../services/Api";
 
 export default function Home () {
 
