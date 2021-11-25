@@ -2,7 +2,7 @@ import StyledPageContainer from "../../assets/StyledPageContainer";
 import styled from "styled-components";
 import {StyledHeader} from "../../assets/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
-import Records from "../../components/Records";
+import Records from "../../components/RecordsList";
 import { Link, useHistory } from "react-router-dom";
 import RecordsContext from "../../store/RecordsContext";
 import ColorModeContext from "../../store/ColorModeContext";
