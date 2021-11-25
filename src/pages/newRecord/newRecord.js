@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { StyledHeader } from "../../components/StyledHeader";
-import StyledPageContainer from "../../components/StyledPageContainer";
-import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../components/StyledForms";
+import { StyledHeader } from "../../assets/StyledHeader";
+import StyledPageContainer from "../../assets/StyledPageContainer";
+import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../assets/StyledForms";
 import RecordsContext from "../../store/RecordsContext";
 import { useContext, useState, useEffect } from "react";
 import dayjs from "dayjs";
