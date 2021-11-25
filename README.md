@@ -63,4 +63,4 @@ npm start
 npm run build
 ```
 
-9. Finally access http://localhost:4000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions)
+9. Finally access http://localhost:4000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions :eyes:)
