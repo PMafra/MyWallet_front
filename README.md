@@ -27,6 +27,7 @@ The following tools and frameworks were used in the construction of the project:
   <img src="https://img.shields.io/badge/-Styled_components-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-React_router-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-Axios-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/-Trello-blue?style=for-the-badge" />
 </p>
 
 ## How to run
