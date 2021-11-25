@@ -63,19 +63,27 @@ npm start
 ```bash
 npm run build
 ```
-9. Finally access http://localhost:4000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions :eyes:)
+9. Finally access http://localhost:3000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions :eyes:)
 
 ## Running tests with cypress
 
-1. Open Cypress test runner window
+1. Run the front-end with
+```bash
+npm start
+```
+2. Run the back-end server with
+```bash
+npx nodemon /src/server.js
+```
+3. Open Cypress test runner window
 ```sh
 npx cypress open
 ```
-   or
+   or: 
 ```sh
 node_modules/.bin/cypress open
 ```
-2. Click "Run X integration spec" in the upper right corner to run integration tests
+4. Finally click on "Run X integration spec" in the upper right corner to run integration tests
 
 More information: [Follow these instructions to run the tests in CI.](https://on.cypress.io/continuous-integration)
 
