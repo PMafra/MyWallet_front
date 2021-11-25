@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useState, useContext, useEffect, useRef } from "react";
 import RecordsContext from "../store/RecordsContext";
 import ColorModeContext from "../store/ColorModeContext";
-import { getUserRecords } from "../services/api";
+import { getUserRecords } from "../services/Api";
 import UserContext from "../store/UserContext";
+import Record from '../components/Record';
 
 export default function Records () {
 
@@ -20,15 +21,15 @@ export default function Records () {
         recordsEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
 
-    useEffect(() => {
+    const renderizeUserRecords = () => {
         getUserRecords(token).then(res => {
             setRecords(res.data);
         }).catch(err => {
             setRecordsMessage(err.response?.data);
         })
-    }, [])
+    }
 
-    useEffect(() => {
+    const sumAllRecords = () => {
         let sumOfRecordsValues = 0;
         records.forEach(({ isAddRecord, value }) => {
             if (isAddRecord) {
@@ -38,7 +39,14 @@ export default function Records () {
             }
         })
         setTotalBalance(sumOfRecordsValues);
+    }
 
+    useEffect(() => {
+        renderizeUserRecords();
+    }, [])
+
+    useEffect(() => {
+        sumAllRecords();
         setTimeout(() => scrollToBottom(), 1000);
     }, [records])
 
@@ -46,20 +54,8 @@ export default function Records () {
         <StyledRecordsContainer isDarkMode={isDarkMode}>
             <StyledRecordsList>
                 {records.length !== 0 ? (
-                    records.map(({date, description, value, isAddRecord}, i) => 
-                        <StyledRecord key={i} isAddRecord={isAddRecord} isDarkMode={isDarkMode}>
-                            <div className="group-date-description">
-                                <time className="fontClass">{date}</time>
-                                <p className="fontClass">{description}</p>
-                            </div>
-                            <span className="fontClass">
-                                {value % 1 === 0 ? (
-                                    `${value}.00`
-                                ) : (
-                                    value.toFixed(2)
-                                )}
-                            </span>
-                        </StyledRecord>   
+                    records.map((record) => 
+                        <Record record={record} />
                     )
                 ) : (
                     <StyledNoRecords>
@@ -122,43 +118,6 @@ const StyledRecordsList = styled.ul`
 
     ::-webkit-scrollbar {
         display: none;
-    }
-`
-const StyledRecord = styled.li`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    .group-date-description {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .fontClass {
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 19px;
-    }
-
-    time {
-        color: #D4D4D4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 10px;
-    }
-
-    p {
-        color: ${({isDarkMode}) => isDarkMode ? "#ffffff" : "#000000"};
-        word-break: break-all;
-    }
-
-    span {
-        color: ${({ isAddRecord }) => isAddRecord ? "#69CB60": "#C70000"};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 10px;
     }
 `
 const StyledBalanceBox = styled.div`

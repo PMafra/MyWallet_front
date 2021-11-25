@@ -4,7 +4,7 @@ import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../ass
 import { Link, useHistory } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ColorModeContext from "../../store/ColorModeContext";
-import { signUp } from "../../services/api";
+import { signUp } from "../../services/Api";
 import InputContext from "../../store/InputContext";
 
 export default function SignUp () {

@@ -2,13 +2,13 @@ import StyledPageContainer from "../../assets/StyledPageContainer";
 import styled from "styled-components";
 import {StyledHeader} from "../../assets/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
-import Records from "../../components/Records";
+import Records from "../../components/RecordsList";
 import { Link, useHistory } from "react-router-dom";
 import RecordsContext from "../../store/RecordsContext";
 import ColorModeContext from "../../store/ColorModeContext";
 import { useContext, useState } from "react";
 import UserContext from "../../store/UserContext";
-import { signOut } from "../../services/api";
+import { signOut } from "../../services/Api";
 
 export default function Home () {
 

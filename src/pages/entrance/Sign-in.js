@@ -4,7 +4,7 @@ import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../ass
 import { Link, useHistory } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ColorModeContext from "../../store/ColorModeContext";
-import { signIn } from "../../services/api";
+import { signIn } from "../../services/Api";
 import UserContext from "../../store/UserContext";
 import InputContext from "../../store/InputContext";
 

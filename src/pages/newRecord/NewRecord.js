@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import ColorModeContext from "../../store/ColorModeContext";
 import UserContext from "../../store/UserContext";
-import { sendNewRecord } from "../../services/api";
+import { sendNewRecord } from "../../services/Api";
 import InputContext from "../../store/InputContext";
 
 export default function NewRecord () {
