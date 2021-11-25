@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# My Wallet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An easy to use financial manager. Track your revenues and expenses to learn how you spend your money and know all the time how much you have.
 
-## Available Scripts
+<!-- <img src="/assets/my-wallet-usage.gif" /> -->
 
-In the project directory, you can run:
+<!-- Try it out now at https://link-to-my-project-deployed.herokuapp.com -->
 
-### `npm start`
+## About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This is an web application with which lots of people can manage their own expenses and revenues. Below are the implemented features:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Sign Up
+- Login
+- Logout
+- List all financial events for a user
+- Add expense
+- Add revenue
 
-### `npm test`
+By using this app any user can learn how they've been using their money and always keep track of your balance.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
+The following tools and frameworks were used in the construction of the project:<br>
+<p>
+  <img src="https://img.shields.io/badge/-Javascript-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/-React-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/-Styled_components-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/-React_router-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/-Axios-blue?style=for-the-badge" />
+</p>
 
-### `npm run build`
+## How to run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Create a root project folder named MyWallet
+```sh
+mkdir gratibox
+```
+2. Clone the front-end repo
+```sh
+git clone https://github.com/PMafra/MyWallet_front.git
+```
+3. Install NPM packages for the front-end repo
+```sh
+npm install
+```
+4. Clone the back-end repo as a sibling to the front-end (within the /MyWallet folder)
+```sh
+git clone https://github.com/PMafra/projeto_14_my_wallet_back.git
+```
+5. Install NPM packages for the back-end repo
+```sh
+npm install
+```
+6. Follow instructions to fully run back-end at https://github.com/PMafra/projeto_14_my_wallet_back
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+7. Run the front-end with
+```bash
+npm start
+```
+8. You can optionally build the project running (See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information)
+```bash
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+9. Finally access http://localhost:4000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions)
