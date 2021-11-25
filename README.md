@@ -34,7 +34,7 @@ The following tools and frameworks were used in the construction of the project:
 
 1. Create a root project folder named MyWallet
 ```sh
-mkdir gratibox
+mkdir MyWallet
 ```
 2. Clone the front-end repo
 ```sh
