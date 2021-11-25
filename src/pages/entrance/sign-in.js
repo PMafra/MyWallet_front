@@ -1,6 +1,6 @@
-import StyledPageContainer from "../../components/StyledPageContainer";
-import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../components/StyledSignPage";
-import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../components/StyledForms";
+import StyledPageContainer from "../../assets/StyledPageContainer";
+import { StyledSignPage, StyledLogo, StyledLogSwap } from "../../assets/StyledSignPage";
+import { StyledForm, StyledInput, StyledButton, StyledAlertBox } from "../../assets/StyledForms";
 import { Link, useHistory } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ColorModeContext from "../../store/ColorModeContext";

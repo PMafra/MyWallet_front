@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router} from "react-router-dom";
 import AppRoutes from "./AppRoutes";
-import GlobalStyle from "./components/GlobalStyle";
+import GlobalStyle from "./assets/GlobalStyle";
 import RecordsContext from "./store/RecordsContext";
 import ColorModeContext from "./store/ColorModeContext";
 import UserContext from "./store/UserContext";
-import TransitionStyle from "./components/TransitionStyle";
+import TransitionStyle from "./assets/TransitionStyle";
 import InputContext from "./store/InputContext";
 
 export default function App () {

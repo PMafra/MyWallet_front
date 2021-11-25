@@ -1,6 +1,6 @@
-import StyledPageContainer from "../../components/StyledPageContainer";
+import StyledPageContainer from "../../assets/StyledPageContainer";
 import styled from "styled-components";
-import {StyledHeader} from "../../components/StyledHeader";
+import {StyledHeader} from "../../assets/StyledHeader";
 import {IoLogOutOutline, IoAddCircleOutline, IoRemoveCircleOutline} from "react-icons/io5";
 import Records from "../../components/Records";
 import { Link, useHistory } from "react-router-dom";
