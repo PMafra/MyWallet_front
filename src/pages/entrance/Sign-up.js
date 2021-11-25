@@ -49,7 +49,8 @@ export default function SignUp() {
     };
     signUp(signUpBody).then(() => {
       setLoading(false);
-      history.push('/');
+      setAlertMessage('Conta criada com sucesso!');
+      setTimeout(() => history.push('/'), 3000);
     }).catch((err) => {
       setAlertMessage(err.response?.data);
       setTimeout(() => setAlertMessage(passwordRules), 4000);
@@ -104,7 +105,7 @@ export default function SignUp() {
             isDarkMode={isDarkMode}
             required
           />
-          <StyledAlertBox>
+          <StyledAlertBox id="info-message">
             {alertMessage}
           </StyledAlertBox>
           <StyledButton
