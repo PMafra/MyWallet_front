@@ -19,5 +19,5 @@ const TransitionStyle = createGlobalStyle`
     .fade-drop-exit {
         transform: translateX(10000px);
     }
-`
+`;
 export default TransitionStyle;

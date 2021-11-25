@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledSignPage = styled.div`
     display: flex;
@@ -6,7 +6,7 @@ const StyledSignPage = styled.div`
     align-items: center;
     flex-direction: column;
     height: 100%;
-`
+`;
 const StyledLogo = styled.h1`
     font-family: 'Bilbo', cursive;
     font-weight: 700;
@@ -14,7 +14,7 @@ const StyledLogo = styled.h1`
     line-height: 50px;
     color: #ffffff;
     margin-bottom: 24px;
-`
+`;
 const StyledLogSwap = styled.div`
     display: flex;
     justify-content: center;
@@ -27,9 +27,9 @@ const StyledLogSwap = styled.div`
         font-weight: 700;
         font-size: 15px;
     }
-`
+`;
 export {
-    StyledSignPage, 
-    StyledLogo, 
-    StyledLogSwap
-}
+  StyledSignPage,
+  StyledLogo,
+  StyledLogSwap,
+};
