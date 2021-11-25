@@ -27,6 +27,7 @@ The following tools and frameworks were used in the construction of the project:
   <img src="https://img.shields.io/badge/-Styled_components-purple?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-React_router-purple?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-Axios-purple?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/-Cypress-purple?style=for-the-badge" />
   <img src="https://img.shields.io/badge/-Trello-purple?style=for-the-badge" />
 </p>
 
