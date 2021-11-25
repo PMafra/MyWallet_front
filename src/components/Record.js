@@ -1,14 +1,14 @@
-import React from "react";
-import { useContext } from "react";
-import styled from "styled-components";
-import ColorModeContext from "../store/ColorModeContext";
+/* eslint-disable react/prop-types */
+import { useContext } from 'react';
+import styled from 'styled-components';
+import ColorModeContext from '../store/ColorModeContext';
 
 export default function Record({ record }) {
   const { isDarkMode } = useContext(ColorModeContext);
   const {
     isAddRecord,
-    date, 
-    description, 
+    date,
+    description,
     value,
   } = record;
   return (
@@ -49,12 +49,12 @@ const StyledRecord = styled.li`
   }
 
   p {
-    color: ${({ isDarkMode }) => (isDarkMode ? "#ffffff" : "#000000")};
+    color: ${({ isDarkMode }) => (isDarkMode ? '#ffffff' : '#000000')};
     word-break: break-all;
   }
 
   span {
-    color: ${({ isAddRecord }) => (isAddRecord ? "#69CB60" : "#C70000")};
+    color: ${({ isAddRecord }) => (isAddRecord ? '#69CB60' : '#C70000')};
     display: flex;
     justify-content: center;
     align-items: center;
