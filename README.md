@@ -2,7 +2,7 @@
 
 An easy to use financial manager. Track your revenues and expenses to learn how you spend your money and know all the time how much you have.
 
-<!-- <img src="/assets/my-wallet-usage.gif" /> -->
+<img src="/assets/images/MyWallet.gif" />
 
 <!-- Try it out now at https://link-to-my-project-deployed.herokuapp.com -->
 
@@ -10,7 +10,7 @@ An easy to use financial manager. Track your revenues and expenses to learn how 
 
 This is an web application with which lots of people can manage their own expenses and revenues. Below are the implemented features:
 
-- Sign Up
+- Sign-up
 - Login
 - Logout
 - List all financial events for a user
