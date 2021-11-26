@@ -1,9 +1,10 @@
 # My Wallet
 
+Try it out now at https://projeto-14-my-wallet-front-blue.vercel.app/
+
 An easy to use financial manager. Track your revenues and expenses to learn how you spend your money and know all the time how much you have.
 
 <img width="350px" heigth="350px" src="/src/assets/images/MyWallet.gif" />
-<!-- Try it out now at https://link-to-my-project-deployed.herokuapp.com -->
 
 ## About
 
