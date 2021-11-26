@@ -1,10 +1,10 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import StyledPageContainer from '../../assets/StyledPageContainer';
-import { StyledSignPage, StyledLogo, StyledLogSwap } from '../../assets/StyledSignPage';
+import StyledPageContainer from '../../assets/styles/StyledPageContainer';
+import { StyledSignPage, StyledLogo, StyledLogSwap } from '../../assets/styles/StyledSignPage';
 import {
   StyledForm, StyledInput, StyledButton, StyledAlertBox,
-} from '../../assets/StyledForms';
+} from '../../assets/styles/StyledForms';
 import ColorModeContext from '../../store/ColorModeContext';
 import { signIn } from '../../services/Api';
 import UserContext from '../../store/UserContext';

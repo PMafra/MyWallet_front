@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { useContext, useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { useHistory } from 'react-router-dom';
-import StyledHeader from '../../assets/StyledHeader';
-import StyledPageContainer from '../../assets/StyledPageContainer';
+import StyledHeader from '../../assets/styles/StyledHeader';
+import StyledPageContainer from '../../assets/styles/StyledPageContainer';
 import {
   StyledForm, StyledInput, StyledButton, StyledAlertBox,
-} from '../../assets/StyledForms';
+} from '../../assets/styles/StyledForms';
 import RecordsContext from '../../store/RecordsContext';
 import ColorModeContext from '../../store/ColorModeContext';
 import UserContext from '../../store/UserContext';
