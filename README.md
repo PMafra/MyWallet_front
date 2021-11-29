@@ -47,13 +47,13 @@ npm install
 ```
 4. Clone the back-end repo as a sibling to the front-end (within the /MyWallet folder)
 ```sh
-git clone https://github.com/PMafra/projeto_14_my_wallet_back.git
+git clone https://github.com/PMafra/MyWallet_back.git
 ```
 5. Install NPM packages for the back-end repo
 ```sh
 npm install
 ```
-6. Follow instructions to fully run back-end at https://github.com/PMafra/projeto_14_my_wallet_back
+6. Follow instructions to fully run back-end at https://github.com/PMafra/MyWallet_back
 
 7. Run the front-end with
 ```bash
