@@ -55,27 +55,32 @@ npm install
 ```
 6. Follow instructions to fully run back-end at https://github.com/PMafra/MyWallet_back
 
-7. Run the front-end with
+7. To run in test or development environments:
+* Change API_URL variable in /src/services/Api.js to 'http://localhost:yourBackEndPortNumber' with yourBackEndPortNumber being the PORT variable value set in your backend .env file (.env.dev or .env.test)
+
+8. Run the front-end with
 ```bash
 npm start
 ```
-8. You can optionally build the project running (See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information)
+9. You can optionally build the project running (See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information)
 ```bash
 npm run build
 ```
-9. Finally access http://localhost:3000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions :eyes:)
+10. Finally access http://localhost:3000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions :eyes:)
 
 ## Running tests with cypress
 
-1. Run the front-end with
+1. Change API_URL variable in /src/services/Api.js to **http://localhost:yourBackEndPortNumber** with yourBackEndPortNumber being the PORT variable value set in your backend .env.test file
+
+2. Run the front-end with
 ```bash
 npm start
 ```
-2. Run the back-end server with
+3. Run the back-end server with
 ```bash
 npx nodemon /src/server.js
 ```
-3. Open Cypress test runner window
+4. Open Cypress test runner window
 ```sh
 npx cypress open
 ```
@@ -83,7 +88,7 @@ npx cypress open
 ```sh
 node_modules/.bin/cypress open
 ```
-4. Finally click on "Run X integration spec" in the upper right corner to run integration tests
+5. Finally click on "Run X integration spec" in the upper right corner to run integration tests
 
 More information: [Follow these instructions to run the tests in CI.](https://on.cypress.io/continuous-integration)
 
