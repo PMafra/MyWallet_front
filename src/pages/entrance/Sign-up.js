@@ -19,7 +19,7 @@ export default function SignUp() {
   const history = useHistory();
   const { isDarkMode } = useContext(ColorModeContext);
   const { alertMessage, setAlertMessage } = useContext(InputContext);
-  const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
+  const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.,_]).{8,}$';
 
   useEffect(() => {
     setAlertMessage(passwordRules);

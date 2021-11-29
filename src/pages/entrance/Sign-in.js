@@ -18,7 +18,7 @@ export default function SignIn() {
   const { isDarkMode } = useContext(ColorModeContext);
   const { setToken, setUserName } = useContext(UserContext);
   const { alertMessage, setAlertMessage } = useContext(InputContext);
-  const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$';
+  const passwordRegex = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.,_]).{8,}$';
   const initialMessage = 'Faça login com sua conta!';
 
   useEffect(() => {
