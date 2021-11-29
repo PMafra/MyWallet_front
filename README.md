@@ -34,23 +34,23 @@ The following tools and frameworks were used in the construction of the project:
 ## How to run
 
 1. Create a root project folder named MyWallet
-```sh
+```
 mkdir MyWallet
 ```
 2. Clone the front-end repo
-```sh
+```
 git clone https://github.com/PMafra/MyWallet_front.git
 ```
 3. Install NPM packages for the front-end repo
-```sh
+```
 npm install
 ```
 4. Clone the back-end repo as a sibling to the front-end (within the /MyWallet folder)
-```sh
+```
 git clone https://github.com/PMafra/MyWallet_back.git
 ```
 5. Install NPM packages for the back-end repo
-```sh
+```
 npm install
 ```
 6. Follow instructions to fully run back-end at https://github.com/PMafra/MyWallet_back
@@ -59,11 +59,11 @@ npm install
 * Change API_URL variable in /src/services/Api.js to **http://localhost:yourBackEndPortNumber** with yourBackEndPortNumber being the PORT variable value set in your backend .env file (.env.dev or .env.test)
 
 8. Run the front-end with
-```bash
+```
 npm start
 ```
 9. You can optionally build the project running (See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information)
-```bash
+```
 npm run build
 ```
 10. Finally access http://localhost:3000 on your favorite browser (unless it is Internet Explorer. In this case, review your life decisions :eyes:)
@@ -73,19 +73,25 @@ npm run build
 1. Change API_URL variable in /src/services/Api.js to **http://localhost:yourBackEndPortNumber** with yourBackEndPortNumber being the PORT variable value set in your backend .env.test file
 
 2. Run the front-end with
-```bash
+```
 npm start
 ```
 3. Run the back-end server with
-```bash
+```
 npx nodemon /src/server.js
 ```
+   or:
+```
+npx ntl
+```
+* Choose 'test' option
+
 4. Open Cypress test runner window
-```sh
+```
 npx cypress open
 ```
    or: 
-```sh
+```
 node_modules/.bin/cypress open
 ```
 5. Finally click on "Run X integration spec" in the upper right corner to run integration tests
