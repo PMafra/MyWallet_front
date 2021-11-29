@@ -56,7 +56,7 @@ npm install
 6. Follow instructions to fully run back-end at https://github.com/PMafra/MyWallet_back
 
 7. To run in test or development environments:
-* Change API_URL variable in /src/services/Api.js to **http://localhost:yourBackEndPortNumber** with yourBackEndPortNumber being the PORT variable value set in your backend .env file (.env.dev or .env.test)
+* Change API_URL variable in /src/services/Api.js from **https://my-wallet-driven.herokuapp.com** to **http://localhost:yourBackEndPortNumber** with yourBackEndPortNumber being the PORT variable value set in your backend .env file (.env.dev or .env.test)
 
 8. Run the front-end with
 ```
